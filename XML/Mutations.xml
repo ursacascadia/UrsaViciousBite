@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mutations>
+  <category Name="Physical">
+    <mutation Name="Vicious Bite" Cost="1" MaxSelected="1" Class="Ursa_ViciousBite" BearerDescription="the snapjawed" Exclusions="Beak,Vampirism,Fangs (Confusing Venom),Fangs (Paralyzing Venom),Fangs (Poisoning Venom),Fangs" Tile="Creatures/natural-weapon-bite.bmp" />
+    <mutation Name="Heightened Smell (visible)" Cost="2" Class="HeightenedSmell" BearerDescription="those with heightened smell" Tile="Mutations/heightened_smell.png" />
+ </category>
+</mutations>

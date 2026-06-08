@@ -1,0 +1,99 @@
+using System;
+
+namespace XRL.World.Parts.Mutation {
+
+[Serializable]
+public class Ursa_ViciousBite : BaseDefaultEquipmentMutation
+{
+    public GameObject BiteObject;
+
+    public string BodyPartType = "Face";
+
+    public override IPart DeepCopy(GameObject Parent, Func<GameObject, GameObject> MapInv)
+    {
+        Ursa_ViciousBite obj = base.DeepCopy(Parent, MapInv) as Ursa_ViciousBite;
+        obj.BiteObject = null;
+        return obj;
+    }
+
+    public override bool CanLevel()
+    {
+        return true;
+    }
+
+    public override bool GeneratesEquipment()
+    {
+        return true;
+    }
+
+    public override void Register(GameObject Object, IEventRegistrar Registrar)
+    {
+        base.Register(Object, Registrar);
+    }
+
+    public override bool FireEvent(Event E)
+    {
+        return base.FireEvent(E);
+    }
+    
+    public string GetBaseDamage(int Level)
+    {
+        return "1d" + (3 + Level / 2);
+    }
+
+    public override string GetDescription()
+    {
+        return "Your jaws are capable of bone crushing force.";
+    }
+
+    public override string GetLevelText(int Level)
+    {
+        string text = "Grants a {{rules|vicious bite}}, a short-blade class natural weapon.\n";
+        text = text + "Deals {{rules|" + GetBaseDamage(Level) + "}} damage.\n";
+        return text + "+100 reputation with {{w|snapjaws}}";
+    }
+
+    public override void OnRegenerateDefaultEquipment(Body body)
+    {
+        if (!TryGetRegisteredSlot(body, BodyPartType, out var Part))
+        {
+            Part = body.GetFirstPart(BodyPartType);
+            if (Part != null)
+            {
+                RegisterSlot(BodyPartType, Part);
+            }
+        }
+        if (Part != null)
+        {
+            BiteObject = GameObjectFactory.Factory.CreateObject("Bite");
+            MeleeWeapon part = BiteObject.GetPart<MeleeWeapon>();
+            part.Skill = "ShortBlades";
+            part.BaseDamage = GetBaseDamage(base.Level);
+            part.MaxStrengthBonus = 100;
+            part.Slot = Part.Type;
+            Part.DefaultBehavior = BiteObject;
+            Part.DefaultBehavior.SetStringProperty("TemporaryDefaultBehavior", "Bite");
+            // BiteObject.SetStringProperty("HitSound", "Sounds/Creatures/VO/sfx_creature_animal_snapjaw_vo_attack");
+            ResetDisplayName();
+        }
+        base.OnRegenerateDefaultEquipment(body);
+    }
+
+    public override bool ChangeLevel(int NewLevel)
+    {
+        return base.ChangeLevel(NewLevel);
+    }
+
+    public override bool Mutate(GameObject GO, int Level)
+    {
+        return base.Mutate(GO, Level);
+    }
+
+    public override bool Unmutate(GameObject GO)
+    {
+        CleanUpMutationEquipment(GO, ref BiteObject);
+        return base.Unmutate(GO);
+    }
+}
+
+}

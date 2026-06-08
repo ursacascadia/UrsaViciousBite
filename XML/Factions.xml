@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<factions Load="Merge">
+    <faction Name="Snapjaws" Load="Merge">
+        <partreputation About="Vicious Bite" Value="100" />
+    </faction>
+</factions>
