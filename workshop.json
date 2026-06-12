@@ -1,3 +1,8 @@
 {
-  "WorkshopId": 3743448288
+  "WorkshopId": 3743448288,
+  "Title": "Vicious Bite",
+  "Description": "Adds the vicious bite mutation (a natural face slot weapon.) Also unlocks heightened smell as an option at character creation. Mutation icon by Billy Checkers.",
+  "Tags": "Mutation",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
 }
