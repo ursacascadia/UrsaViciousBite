@@ -48,7 +48,12 @@ public class Ursa_ViciousBite : BaseDefaultEquipmentMutation
 
     public override string GetLevelText(int Level)
     {
-        string text = "Grants a {{rules|vicious bite}}, a short-blade class natural weapon.\n";
+        string WeaponType = "a short-blade";
+        if (!Variant.IsNullOrEmpty() && Variant == "Ursa_ViciousBite_Carnassial")
+        {
+            WeaponType = "an axe";
+        }
+        string text = "Grants a {{rules|vicious bite}}, " + WeaponType + " class natural weapon.\n";
         text = text + "Deals {{rules|" + GetBaseDamage(Level) + "}} damage.\n";
         return text + "+100 reputation with {{w|snapjaws}}";
     }
@@ -65,15 +70,14 @@ public class Ursa_ViciousBite : BaseDefaultEquipmentMutation
         }
         if (Part != null)
         {
-            BiteObject = GameObjectFactory.Factory.CreateObject("Bite");
+            BiteObject = GameObjectFactory.Factory.CreateObject(Variant ?? "Ursa_ViciousBite");
             MeleeWeapon part = BiteObject.GetPart<MeleeWeapon>();
-            part.Skill = "ShortBlades";
             part.BaseDamage = GetBaseDamage(base.Level);
             part.MaxStrengthBonus = 100;
             part.Slot = Part.Type;
             Part.DefaultBehavior = BiteObject;
             Part.DefaultBehavior.SetStringProperty("TemporaryDefaultBehavior", "Bite");
-            // BiteObject.SetStringProperty("HitSound", "Sounds/Creatures/VO/sfx_creature_animal_snapjaw_vo_attack");
+            BiteObject.SetStringProperty("HitSound", "Sounds/Creatures/VO/sfx_creature_animal_snapjaw_vo_attack");
             ResetDisplayName();
         }
         base.OnRegenerateDefaultEquipment(body);
