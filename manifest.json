@@ -1,9 +1,8 @@
 {
     "ID": "Ursa_ViciousBite",
-    "LoadOrder": 1,
     "Title": "Vicious Bite",
     "Description": "Adds the {{rules|vicious bite}} mutation, which grants a natural bite weapon.",
-    "Version": "1.0.0",
+    "Version": "1.1.0",
     "Author": "{{amorous|UrsaCascadia}}",
     "Tags": "Mutation",
     "PreviewImage": "preview.png"

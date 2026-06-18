@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <objects>
     <object Name="Ursa_ViciousBite" Inherits="NaturalWeapon">
-        <part Name="Render" DisplayName="vicious bite (fangs)" Tile="Mutations/Ursa_ViciousBite.png" ColorString="&amp;y" />
+        <part Name="Render" DisplayName="vicious bite (fangs)" Tile="Mutations/Ursa_ViciousBite.png" TileColor="&amp;w" DetailColor="W" />
 		<tag Name="MutationEquipment" Value="Ursa_ViciousBite" />
         <part Name="MeleeWeapon" BaseDamage="1d3" Skill="ShortBlades" Stat="Strength" Slot="Face" Attributes="Bite" />
         <tag Name="ShowAsPhysicalFeature" Value="*delete" />
     </object>
     <object Name="Ursa_ViciousBite_Carnassial" Inherits="NaturalWeapon">
-        <part Name="Render" DisplayName="vicious bite (carnassials)" Tile="Mutations/Ursa_ViciousBite.png" ColorString="&amp;y" />
+        <part Name="Render" DisplayName="vicious bite (carnassials)" Tile="Mutations/Ursa_ViciousBite.png" TileColor="&amp;w" DetailColor="W" />
 		<tag Name="MutationEquipment" Value="Ursa_ViciousBite" />
         <part Name="MeleeWeapon" BaseDamage="1d3" Skill="Axe" Stat="Strength" Slot="Face" Attributes="Bite" />
         <tag Name="ShowAsPhysicalFeature" Value="*delete" />
