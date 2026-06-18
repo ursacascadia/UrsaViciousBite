@@ -7,6 +7,7 @@ namespace XRL.World.Parts.Mutation {
 public class Ursa_Devour : BaseMutation
 {
     public Engulfing EngulfingPart;
+    public Ursa_PlayerEngulfing EngulfingPlayerPart;
 
     public override bool CanLevel()
     {
@@ -41,28 +42,32 @@ public class Ursa_Devour : BaseMutation
     public override string GetLevelText(int Level)
     {
         string text = "Devour a nearby enemy for {{rules|" + GetTurnCount(Level) + "}} rounds.\n";
-        text = text + "Deals {{rules|" + GetBaseDamage(Level) + "}} damage per turn.\n";
+        text = text + "Deals {{rules|" + GetBaseDamage(Level) + "}} acid damage per turn while stationary.\n";
         return text;
     }
 
     public override bool ChangeLevel(int NewLevel)
     {
-        EngulfingPart.Damage = GetBaseDamage(Level);
+        EngulfingPlayerPart.Damage = GetBaseDamage(Level);
+        EngulfingPlayerPart.Length = GetTurnCount(Level);
         return base.ChangeLevel(NewLevel);
     }
 
     public override bool Mutate(GameObject GO, int Level)
     {
         EngulfingPart = ParentObject.RequirePart<Engulfing>();
-        EngulfingPart.Damage = GetBaseDamage(Level);
-        EngulfingPart.DamageChance = 100;
+        EngulfingPlayerPart = ParentObject.RequirePart<Ursa_PlayerEngulfing>();
+        EngulfingPlayerPart.DamageAttributes = "Acid";
+        EngulfingPlayerPart.Damage = GetBaseDamage(Level);
+        EngulfingPlayerPart.Length = GetTurnCount(Level);
+        EngulfingPlayerPart.EngulfingPart = EngulfingPart;
         return base.Mutate(GO, Level);
     }
 
     public override bool Unmutate(GameObject GO)
     {
         ParentObject.RemovePart<Engulfing>();
-        ParentObject.RequirePart<EngulfingSedentary>();
+        ParentObject.RemovePart<Ursa_PlayerEngulfing>();
         return base.Unmutate(GO);
     }
 }
