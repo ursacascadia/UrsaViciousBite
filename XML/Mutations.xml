@@ -2,7 +2,7 @@
 <mutations>
   <category Name="Physical">
     <mutation Name="Vicious Bite" Cost="1" MaxSelected="1" Class="Ursa_ViciousBite" BearerDescription="the snapjawed" Exclusions="Beak,Vampirism,Fangs (Confusing Venom),Fangs (Paralyzing Venom),Fangs (Poisoning Venom),Fangs,Latching Jaws" Tile="Mutations/Ursa_ViciousBite.png" />
-    <mutation Name="Devour" Cost="3" MaxSelected="1" Class="Ursa_Devour" BearerDescription="those who devour" Exclusions="" Tile="Creatures/natural-weapon-bite.bmp" />
+    <!-- <mutation Name="Devour" Cost="3" MaxSelected="1" Class="Ursa_Devour" BearerDescription="those who devour" Exclusions="" Tile="Creatures/natural-weapon-bite.bmp" /> -->
     <mutation Name="Heightened Smell (visible)" Cost="2" Class="HeightenedSmell" BearerDescription="those with heightened smell" Tile="Mutations/heightened_smell.png" />
  </category>
 </mutations>
