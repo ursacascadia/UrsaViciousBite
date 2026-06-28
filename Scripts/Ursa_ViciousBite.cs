@@ -38,7 +38,9 @@ public class Ursa_ViciousBite : BaseDefaultEquipmentMutation
     
     public string GetBaseDamage(int Level)
     {
-        return "1d" + (3 + Level / 2);
+        int bonus_int = 0 + Level / 4;
+        string bonus = bonus_int >= 1 ? bonus_int.ToString() : "";
+        return "1d" + (3 + Level / 2) + (bonus != "" ? "+" : "") + bonus;
     }
 
     public override string GetDescription()
